@@ -1,7 +1,8 @@
 import axios from "axios";
+const url = "https://tour-assignment.onrender.com";
 
 const API = axios.create({
-  baseURL: "http://localhost:5000/api", 
+  baseURL: `${url}/api`, 
 });
 
 export const fetchPackages = () => API.get("/packages");

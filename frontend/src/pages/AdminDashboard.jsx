@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const AdminDashboard = () => {
+  const url = "https://tour-assignment.onrender.com";
   const [packages, setPackages] = useState([]);
   const [bookings, setBookings] = useState([]);
   const [showForm, setShowForm] = useState(false);
@@ -38,7 +39,7 @@ const AdminDashboard = () => {
 
   const fetchBookings = async (token) => {
     try {
-      const { data } = await axios.get("http://localhost:5000/api/admin/bookings" , {
+      const { data } = await axios.get(`${url}/api/admin/bookings` , {
         headers: {
             Authorization: `Bearer ${token}`, 
         },
@@ -58,7 +59,7 @@ const AdminDashboard = () => {
       if (filters.maxPrice) queryParams.append("maxPrice", filters.maxPrice);
       if (filters.sortBy) queryParams.append("sortBy", filters.sortBy);
       console.log(queryParams.toString())
-      const { data } = await axios.get(`http://localhost:5000/api/admin/allpackages?${queryParams.toString()}` , {
+      const { data } = await axios.get(`${url}/api/admin/allpackages?${queryParams.toString()}` , {
         headers: {
             Authorization: `Bearer ${token}`, 
         },
@@ -83,12 +84,12 @@ const AdminDashboard = () => {
 
       if (editingPackage) {
         await axios.put(
-          `http://localhost:5000/api/admin/packages/${editingPackage._id}`,
+          `${url}/api/admin/packages/${editingPackage._id}`,
           { ...packageData, availableDates: availableDatesArray }
         );
         alert("Package updated successfully!");
       } else {
-        await axios.post("http://localhost:5000/api/admin/packages", {
+        await axios.post(`${url}/api/admin/packages`, {
           ...packageData,
           availableDates: availableDatesArray,
         });
@@ -118,7 +119,7 @@ const AdminDashboard = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/admin/packages/${id}`);
+      await axios.delete(`${url}/api/admin/packages/${id}`);
       fetchPackages(); 
       alert("Package deleted successfully!");
     } catch (error) {
