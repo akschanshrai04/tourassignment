@@ -20,7 +20,7 @@ app.set("views", path.join(__dirname, "views"));
 app.use(cors());
 app.use(
     cors({
-        origin: "https://tour-assignment.onrender.com",
+        origin: "https://tour-assignment-frontend.onrender.com",
         methods: ["GET", "POST", "PUT", "DELETE"], 
         credentials: true, 
     })
