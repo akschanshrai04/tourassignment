@@ -1,8 +1,8 @@
 import axios from "axios";
-const url = "https://tour-assignment.onrender.com";
+// const url = "https://tour-assignment.onrender.com";
 
 const API = axios.create({
-  baseURL: `${url}/api`, 
+  baseURL: "https://tour-assignment.onrender.com/api", 
 });
 
 export const fetchPackages = () => API.get("/packages");
